@@ -24,7 +24,7 @@ def get_xywh(a):
 
 
 def verify_dir(directory, clear=False):
-    if clear:
+    if clear and os.path.exists(directory):
         shutil.rmtree(directory)
     if not os.path.exists(directory):
         os.makedirs(directory)
