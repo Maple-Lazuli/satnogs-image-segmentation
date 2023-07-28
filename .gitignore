@@ -1,3 +1,7 @@
 venv/*
 coco128/*
 .idea/*
+datasets/*
+data_gen/*
+dataset/*
+yolov5/runs/
