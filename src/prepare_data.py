@@ -89,7 +89,7 @@ def main(flags):
 
     # create the yaml file for yolov5
     with open(os.path.join(yaml_name), "w") as file_out:
-        file_out.write(f'path: ../{save_dir}\n')
+        file_out.write(f'path: {save_dir}\n')
         file_out.write(f'train: {os.path.join(image_dir, "train")[len(save_dir) + 1:]}\n')
         file_out.write(f'val: {os.path.join(image_dir, "validation")[len(save_dir) + 1:]}\n')
         file_out.write(f'test: {os.path.join(image_dir, "test")[len(save_dir) + 1:]}\n')
