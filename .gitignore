@@ -6,3 +6,4 @@ data_gen/*
 dataset/*
 yolov5/runs/
 temp-notebooks/*
+*.yaml
