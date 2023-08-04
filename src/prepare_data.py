@@ -102,15 +102,15 @@ def main(flags):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--source_dir', type=str,
+    parser.add_argument('--source-dir', type=str,
                         default="../data_gen",
                         help='the directory that contains the data for format')
 
-    parser.add_argument('--save_dir', type=str,
+    parser.add_argument('--save-dir', type=str,
                         default="../dataset",
                         help='the directory that contains the data for format')
 
-    parser.add_argument('--yaml_name', type=str,
+    parser.add_argument('--yaml-name', type=str,
                         default="generated.yaml",
                         help='the directory that contains the data for format')
 
