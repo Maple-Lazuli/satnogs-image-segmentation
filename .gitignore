@@ -8,3 +8,4 @@ yolov5/runs/
 temp-notebooks/*
 *.yaml
 yolov5/__pycache__/*
+src/__pycache__/*

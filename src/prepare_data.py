@@ -30,6 +30,13 @@ def verify_dir(directory, clear=False):
         os.makedirs(directory)
 
 
+def get_annotation_labels(file):
+    with open(file, "r") as file_in:
+        file_annotations = json.load(file_in)
+
+    return [a['label'] for a in file_annotations]
+
+
 def create_label(basename, file_name, save_location):
     with open(file_name, "r") as file_in:
         file = json.load(file_in)
@@ -78,6 +85,7 @@ def main(flags):
 
     print(f"train size: {len(split_data['train'])}, validate size: {len(split_data['validation'])}, test size: {len(split_data['test'])}")
     # organize the directory structure for yolov5
+    labels = set()
     for key in split_data.keys():
         for name in split_data[key]:
             for file in data_files:
@@ -86,6 +94,7 @@ def main(flags):
                         shutil.copy(file, os.path.join(image_dir, key))
                     elif file.find(".json") != -1:
                         create_label(name, file_name=file, save_location=os.path.join(label_dir, key))
+                        [labels.add(a) for a in get_annotation_labels(file)]
 
     # create the yaml file for yolov5
     with open(os.path.join(yaml_name), "w") as file_out:
@@ -96,7 +105,8 @@ def main(flags):
         file_out.write("\n")
         file_out.write("names:\n")
         for idx, val in enumerate(["Transmission", 'ASK', "PSK", "FSK", "MFSK", "TONE"]):
-            file_out.write(f'  {idx}: {val}\n')
+            if idx in labels:
+                file_out.write(f'  {idx}: {val}\n')
 
 
 if __name__ == "__main__":
